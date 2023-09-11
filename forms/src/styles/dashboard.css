@@ -1,0 +1,37 @@
+.dashboard-container{
+    background: white;
+    height: 100vh;
+    
+}
+.dashboard-header{
+    background: #0C356A;
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+    color: white;
+    padding: 20px;
+}
+.dashboard-forms-list{
+    height: 80vh;
+    width: 70vw;
+    background-color: #279EFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    border-radius: 20px;
+}
+.add-new-form{
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    display: inline-block;
+    border-radius: 50%;
+    font-weight: bolder;
+    padding: 10px 20px;
+    font-size: xx-large;
+    background-color: #A8DF8E;
+
+}
+#add-icn{
+  color: #F3FDE8;
+}

@@ -1,0 +1,18 @@
+.register-container{
+    text-align: center;
+    margin-top: 25%; 
+    margin-left: 10%;
+    border-radius: 20px;
+    border: 2px double gray;
+    width: 50%; 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+}
+.login{
+   color: blue;
+   margin-left: -250px;
+}
+.name,.register-email,.phone,.reg-pwd,.reg-cnf-pwd,.register-btn,.login{
+    display: inline-block;
+    margin: 10px;
+}

@@ -1,0 +1,24 @@
+.login-heading{
+    text-align: center;
+    
+}
+.email-login,.pwd-login,.forget-pwd,.login-btn,.register{
+    display: inline-block;
+    margin: 10px;
+}
+.login-btn{
+    text-align: center;
+}
+.login-container{
+    text-align: center;
+    margin-top: 25%; 
+    margin-left: 10%;
+    border: 2px double gray;
+    width: 50%;
+    right: 30px; 
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+}
+.register{
+    color: blue;
+}

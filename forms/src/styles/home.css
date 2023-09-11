@@ -1,0 +1,15 @@
+.home-left-pane,.home-right-pane{
+    display: inline-block;
+    width: 50%;
+}
+.home-container{
+    display: flex;
+    flex-direction: row;
+}
+.home-right-pane{
+    text-align: center;
+}
+.home-left-pane{
+    margin-top: 20%;
+    margin-left: 50px;
+}
