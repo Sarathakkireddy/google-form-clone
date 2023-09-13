@@ -1,0 +1,12 @@
+.option{
+    margin-left: 10px;
+}
+.options-inp{
+    margin: 10px;
+    border: none;
+    outline: none;
+    font-size: larger;
+}
+.options-inp:focus {
+    border-bottom: 8px purple;
+}

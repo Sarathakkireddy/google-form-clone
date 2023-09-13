@@ -1,0 +1,37 @@
+.form-container{
+    text-align: center;
+    background-color:  rgba(0,0,0,.2);
+    height: 100vh;
+    padding: 10px;
+}
+.ques-resp-div{
+    text-align: center;
+    margin-bottom: 5px;
+}
+.form-ques-tab,.form-resp-tab{
+    padding: 0px 24px;
+}
+.form-send{
+    float: right;
+    margin-right: 50px;
+    margin-top: 5px;
+    background-color: rgb(103, 58, 183);
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    width: 70px;
+}
+.form-title-head{
+    font-weight: bolder;
+    font-size: x-large;
+}
+.head{
+    width: 100vw;
+    height: 34px;
+}
+#form-container-selected{
+    border-bottom: 5px solid rgb(76, 43, 135);
+}
+.crform-header{
+    height: 60px;
+}

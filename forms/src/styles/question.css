@@ -1,0 +1,18 @@
+.question-inp{
+    text-align: left;
+    width: 40%;
+    height: 25px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid;
+    background-color: rgba(0,0,0,.2);
+    left: 10px;
+    margin-right: 25%;
+}
+.select-type{
+    width: 180px;
+    height: 25px;
+}
+.optren{
+    text-align: left;
+}
