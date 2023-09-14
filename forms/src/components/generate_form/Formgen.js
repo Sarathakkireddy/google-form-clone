@@ -2,10 +2,18 @@ import React, { useState } from "react";
 import "../../styles/formgen.css";
 import Question from "./Question";
 
-function Formgen({ title, settitle }) {
-  const [description,setdescription]=useState("");
-  const form={"title":title,"description":description,"questions":[{"question":"Question","type":"radio","options":["option"]}]};
-
+function Formgen({ title, settitle,form , setdescription, description}) {
+  
+  
+  
+  const [addquestion,Setaddquestion]=useState([...form.questions]);
+  function addnewquestion(){
+    let arr=[...form.questions];
+    arr.push({"question":"Question","type":"radio","options":["option"],"required":"false"});
+    console.log(arr);
+    form.questions=[...arr];
+    Setaddquestion([...arr]);
+  }
   return (
     <>
       <div className="form-title-div">
@@ -20,14 +28,13 @@ function Formgen({ title, settitle }) {
       <div className="form-tools">
         <span
           className="add-content"
-         
+          onClick={()=>{addnewquestion()}}
         >
           <i className="fa-solid fa-circle-plus" id="add-form-content"></i>
         </span>
-        <span>delete</span>
       </div>
       <div className="questions">
-        {form.questions.map((ques,index)=>{return(<Question ques={ques} index={index}/>)})}
+        {form.questions.map((ques,index)=>{return(<Question ques={ques} form={form} addquestion={addquestion} Setaddquestion={Setaddquestion} index={index}/>)})}
       </div>
     </>
   );

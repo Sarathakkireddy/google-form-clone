@@ -6,13 +6,14 @@ import "../../styles/createform.css";
 function Createform() {
   const [title, settitle] = useState("Untitled form");
   const [tab, settab] = useState("ques");
-
+  const [description,setdescription]=useState("");
+  const form={"title":title,"description":description,"questions":[{"question":"Question","type":"radio","options":["option"]}]};
   return (
     <div className="crform-container">
       <div className="crform-header">
         <div className="head">
         <span className="form-title-head">{title}</span>
-        <button className="form-send">Send</button>
+        <button className="form-send" >Send</button>
         </div>
         <div className="ques-resp-div"> 
         <span
@@ -36,7 +37,7 @@ function Createform() {
         </div>
       </div>
       <div className="form-container">
-        {tab === "ques" ? <Formgen title={title} settitle={settitle} /> : <Responses />}
+        {tab === "ques" ? <Formgen title={title} settitle={settitle} form={form} description={description} setdescription={setdescription} /> : <Responses />}
       </div>
     </div>
   );

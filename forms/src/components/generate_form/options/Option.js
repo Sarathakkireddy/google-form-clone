@@ -12,7 +12,7 @@ function Option({ ques,optype }) {
   }
   return (
     <>
-      {ques.options.map((opt,index) => {
+      {options.map((opt,index) => {
         return (<Renderoption index={index} opt={opt}  options={options} setoptions={setoptions} ques={ques} optype={optype}/>)
       })}
       <span className="addnewoption"
