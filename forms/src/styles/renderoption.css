@@ -1,0 +1,13 @@
+.option{
+    margin-left: 10px;
+}
+.options-inp{
+    margin: 10px 10px 10px 10px;
+    border: none;
+    outline: none;
+    font-size: larger;
+    width: 50%;
+}
+.options-inp:focus {
+    border-bottom: 4px solid purple !important;
+}
