@@ -7,7 +7,7 @@ function Createform() {
   const [title, settitle] = useState("Untitled form");
   const [tab, settab] = useState("ques");
   const [description,setdescription]=useState("");
-  const form={"title":title,"description":description,"questions":[{"question":"Question","type":"radio","options":["option"]}]};
+  const form={"title":title,"description":description,"questions":[{"question":"Question","qtype":"radio","options":["option"]}]};
   return (
     <div className="crform-container">
       <div className="crform-header">

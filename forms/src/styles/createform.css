@@ -18,10 +18,12 @@
     margin-right: 50px;
     margin-top: 5px;
     background-color: rgb(103, 58, 183);
+    
     color: white;
     border-radius: 5px;
     padding: 5px;
     width: 70px;
+    
 }
 .form-title-head{
     font-weight: bolder;
