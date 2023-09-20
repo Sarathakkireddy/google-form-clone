@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../styles/dashboard.css";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAccountInfo } from "../contexts/accountContext";
 import Formsrender from "./Formsrender";
 
 function Dashboard() {
-  const navigate = useNavigate();
   const context = useAccountInfo();
   const [id, setid] = useState();
   const [forms,setforms]=useState([]);
@@ -34,6 +32,7 @@ function Dashboard() {
       },
       data: { id: context.userId },
     });
+    console.log(res.data);
     setid(res.data.data[0]._id);
     setforms([...res.data.data[0].forms]);
   }
@@ -73,7 +72,6 @@ function Dashboard() {
         className="add-new-form"
         onClick={() => {
           addnewquestion();
-          // navigate("/cf");
         }}
       >
         <i className="fa-plus" id="add-icn"></i>

@@ -13,7 +13,6 @@ const getForms = async (req, res) => {
 
 const updateform = async (req, res) => {
   try {
-    const form = req.body.forms;
     const data = await formModel.findByIdAndUpdate(req.body.id,{forms:req.body.forms});
     res.status(200).json({ data })
     
@@ -24,11 +23,11 @@ const updateform = async (req, res) => {
 
 const viewform=async (req,res)=>{
   try{
-    const data=await formModel.findById(req.body.formid);
+    const data=await formModel.findOne(req.body.userid);
     res.status(200).json({data});
   }catch(e){
     res.status(400).json({message: e.message });
   }
 }
 
-module.exports = { getForms, updateform };
+module.exports = { getForms, updateform, viewform };

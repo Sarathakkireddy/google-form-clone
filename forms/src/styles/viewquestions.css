@@ -1,0 +1,14 @@
+.view-question-container{
+    width: 60%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    padding: 20px;
+    background: white;
+}
+.view-options-div{
+    display: flex;
+    flex-direction: column;
+    text-align: left !important;
+}

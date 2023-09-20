@@ -1,0 +1,37 @@
+.viewform-container{
+    height: 100%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    margin-top: -1%;
+}
+body{
+    background-color: #f0ebf8;
+}
+.viewform-head{
+    width: 60%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 8px solid rgb(103, 58, 183);
+    border-radius: 10px;
+    padding: 20px;
+    background: white;
+}
+.form-submit{
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    background-color: rgb(103, 58, 183);
+    color: white;
+    font-size: larger;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-left: 40%;
+    margin-right: 50%;
+}
+
+
+  

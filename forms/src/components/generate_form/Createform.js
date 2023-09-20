@@ -2,19 +2,22 @@ import React, { useState } from "react";
 import Formgen from "./Formgen";
 import Responses from "./Responses";
 import "../../styles/createform.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import copy from "copy-to-clipboard";
 
-function Createform( ) {
-  const location=useLocation();
-  const form=location.state.form;
-  const forms=location.state.forms;
-  const frmindex=location.state.frmindex;
-  const id=location.state.id;
+
+function Createform() {
+  const location = useLocation();;
+  const form = location.state.form;
+  const forms = location.state.forms;
+  const frmindex = location.state.frmindex;
+  const id = location.state.id;
   const [title, settitle] = useState(forms[frmindex].title);
   const [tab, settab] = useState("ques");
   const [description, setdescription] = useState(forms[frmindex].description);
-  const [saved,setsaved]=useState(true);
+  const [saved, setsaved] = useState(true);
+  const navigate=useNavigate();
 
   async function addques() {
     const res = await axios({
@@ -23,19 +26,41 @@ function Createform( ) {
       headers: {
         Authorization: `Bearer ${localStorage.token}`,
       },
-      data: { id: id,forms:forms },
+      data: { id: id, forms: forms },
     });
     setsaved(true);
-  };
-  
+  }
+
   return (
     <div className="crform-container">
       <div className="crform-header">
         <div className="head">
           <span className="form-title-head">{title}</span>
-          {saved===false?
-          <button className="form-send" onClick={()=>{addques();}}>Save</button>:
-          <button className="form-send" onClick={()=>{}}>Send</button>}
+          {saved === false ? (
+            <button
+              className="form-send"
+              onClick={() => {
+                addques();
+              }}
+            >
+              Save
+            </button>
+          ) : (
+            <>
+              <button
+                className="form-send"
+                onClick={() => {
+                  copy("http://localhost:3000/view/"+id+"/"+form._id);
+                  alert("Link Copied to ClipBoard");
+                }}
+              >
+                Copy Link
+              </button>
+              <button className="form-send" onClick={() => {navigate("/view/"+id+"/"+form._id)}}>
+                Preview
+              </button>
+            </>
+          )}
         </div>
         <div className="ques-resp-div">
           <span
@@ -70,9 +95,8 @@ function Createform( ) {
             description={description}
             setdescription={setdescription}
           />
-         
         ) : (
-          <Responses />
+          <Responses form={form} id={id}/>
         )}
       </div>
     </div>
