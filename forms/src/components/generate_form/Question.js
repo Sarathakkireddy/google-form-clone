@@ -3,22 +3,34 @@ import "../../styles/question.css";
 import Option from "./options/Option";
 import Text from "./options/Text";
 
-function Question({ ques, form, addquestion, index, Setaddquestion }) {
-  const [optype, setoptype] = useState(form.questions[index].type);
+function Question({
+  ques,
+  form,
+  forms,
+  frmindex,
+  addquestion,
+  index,
+  Setaddquestion,
+  setsaved,
+}) {
+  const [optype, setoptype] = useState(ques.type);
   function changequestion(e) {
     let arr = [...addquestion];
     arr[index].question = e;
-    form.questions[index].question = e;
+    forms[frmindex].questions[index].question = e;
     Setaddquestion([...arr]);
+    setsaved(false);
   }
   useEffect(() => {
-    setoptype(form.questions[index].type);
-  }, [form.questions, index]);
+    setoptype(forms[frmindex].questions[index].type);
+  }, [forms, frmindex, index]);
+
   function deleteques() {
-    let arr = [...form.questions];
+    let arr = [...forms[frmindex].questions];
     arr.splice(index, 1);
-    form.questions = [...arr];
+    forms[frmindex].questions = [...arr];
     Setaddquestion([...arr]);
+    setsaved(false);
   }
   return (
     <div className="question-div">
@@ -28,20 +40,22 @@ function Question({ ques, form, addquestion, index, Setaddquestion }) {
         value={addquestion[index].question}
         onChange={(e) => {
           changequestion(e.currentTarget.value);
+          setsaved(false);
         }}
       />
       <select
         className="select-type"
-        value={ques.type}
+        defaultValue={optype}
         onChange={(e) => {
-          form.questions[index].type = e.currentTarget.value;
+          forms[frmindex].questions[index].type = e.currentTarget.value;
           setoptype(e.currentTarget.value);
+          setsaved(false);
         }}
       >
         <option value={"text"}>Short answer</option>
         <option value={"textarea"}>Paragraph</option>
         <hr />
-        <option value={"radio"} selected>
+        <option value={"radio"}>
           Multiple Choice
         </option>
         <option value={"checkbox"}>Checkboxes</option>
@@ -54,11 +68,18 @@ function Question({ ques, form, addquestion, index, Setaddquestion }) {
       </select>
       <div className="optren">
         {optype === "text" || optype === "textarea" ? (
-          <Text optype={optype} />
+          <Text optype={optype}/>
         ) : optype === "radio" ||
           optype === "checkbox" ||
           optype === "dropdown" ? (
-          <Option ques={ques} optype={optype} />
+          <Option
+            ques={ques}
+            optype={optype}
+            forms={forms}
+            frmindex={frmindex}
+            index={index}
+            setsaved={setsaved}
+          />
         ) : (
           ""
         )}
@@ -66,15 +87,15 @@ function Question({ ques, form, addquestion, index, Setaddquestion }) {
       <div className="quesopt">
         <div className="required">
           Required{" "}
-          <label class="switch">
+          <label className="switch">
             <input
               type="checkbox"
               onChange={() => {
-                form.questions[index].required =
-                  !form.questions[index].required;
+                forms[frmindex].questions[index].required =
+                  !forms[frmindex].questions[index].required;
               }}
             />
-            <span class="slider round"></span>
+            <span className="slider round"></span>
           </label>
         </div>
         <div
@@ -83,7 +104,7 @@ function Question({ ques, form, addquestion, index, Setaddquestion }) {
             deleteques();
           }}
         >
-          <i class="fa-solid fa-trash-can" id="trashcan"></i>
+          <i className="fa-solid fa-trash-can" id="trashcan"></i>
         </div>
       </div>
     </div>

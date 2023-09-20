@@ -1,0 +1,15 @@
+.formdisp-div{
+    width: 90%;
+    margin:20px;
+    background-color: aquamarine;
+    border-radius: 20px;
+    height: auto;
+    padding: 10px;
+}
+.formdisp-title{
+    font-size: x-large;
+    font-weight: 600;
+}
+.formdisp-desc{
+    font-size: large;
+}

@@ -10,7 +10,7 @@ function Register({setview}) {
   const rcnfpwdref=useRef(null);
 
   function validEmail(email) {
-    var validRegex = /^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
+    var validRegex = /^[A-Za-z0-9_!#$%&'*+=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
     if (email.match(validRegex)) {
       return true;
     } else {

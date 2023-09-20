@@ -9,29 +9,21 @@ function Login({setview}) {
   const emailref=useRef(null);
   const pwdref=useRef(null);
   const navigate=useNavigate();
+  let selector="";
   function validEmail(email) {
     var validRegex = /^[A-Za-z0-9_!#$%&'*+=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm;
     if (email.match(validRegex)) {
-      return true;
+      selector="email";
     } else {
-      return false;
+      selector="contact";
     }
-  }
-  function validate(){
-    if(!(validEmail(emailref.current.value))){
-      return false;
-    }
-    if(!(pwdref.current.value==="")){
-      return false;
-    }
-    return true;
   }
   const logintoaccount=async ()=>{
     try{
     const res=await axios.post("http://localhost:4000/google-form/v1/account/login",{
       userid:emailref.current.value,
       password:pwdref.current.value,
-      selector:"contact",
+      selector:selector,
     });
     context.changeToken(res.data.token);
     localStorage.setItem("token", res.data.token);
@@ -50,9 +42,9 @@ function Login({setview}) {
         <input type='password' placeholder='PASSWORD' ref={pwdref} className='pwd-login'/>
         <br/>
         <span className='forget-pwd'>Forgot password</span><br/>
-        <button className='login-btn' onClick={()=>{//if(validate()){
-          logintoaccount();//}else{
-            //console.log("false")//}
+        <button className='login-btn' onClick={()=>{
+          validEmail(emailref.current.value);
+          logintoaccount();
           }}>LOGIN</button><br/>
         <span className='register' onClick={()=>{setview("register")}}>Register</span>
     </div>

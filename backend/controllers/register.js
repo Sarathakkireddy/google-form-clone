@@ -14,7 +14,7 @@ const register=async(req,res)=>{
           });
         } else {
           const hashedPass = hashed(req.body.password);
-          const new_account = await accountModel.create({
+          const new_account = await accountModel.create({ 
             name:req.body.name,
             email:req.body.email,
             contact:req.body.contact,
@@ -22,7 +22,7 @@ const register=async(req,res)=>{
           });
           const addform=await formModel.create({
             user:new_account._id,
-            forms:[{title:"Undefiened title",description:"description",questions:[{question:"Question",qtype:"radio",options:["option"]}]}],
+            forms:[{title:"Undefiened title",description:"description",questions:[{question:"Question",type:"radio",required:false,options:["option"]}]}],
           });
           res.status(201).json(new_account);
         }

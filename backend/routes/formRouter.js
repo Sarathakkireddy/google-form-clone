@@ -1,11 +1,15 @@
 const express = require("express");
 const { protect } = require("../middleware/authMiddleware");
-const {getForms, updateForms,createform}=require("../controllers/formcontroller");
+const {
+  getForms,
+  updateform,
+  viewform,
+} = require("../controllers/formcontroller");
 
 const router = express.Router();
 
-router.get("/formdets",protect,getForms);
-router.put("/edit",protect,updateForms);
-router.put("/form",protect,createform);
+router.get("/formdets", protect, getForms);
+router.patch("/form", protect, updateform);
+router.get("/viewform", viewform); 
 
 module.exports = router;
