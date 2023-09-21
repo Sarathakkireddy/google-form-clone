@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../styles/question.css";
 import Option from "./options/Option";
 import Text from "./options/Text";
+import DateTime from "./options/DateTime";
 
 function Question({
   ques,
@@ -54,21 +55,15 @@ function Question({
       >
         <option value={"text"}>Short answer</option>
         <option value={"textarea"}>Paragraph</option>
-        <hr />
-        <option value={"radio"}>
-          Multiple Choice
-        </option>
+        <option value={"radio"}>Multiple Choice</option>
         <option value={"checkbox"}>Checkboxes</option>
         <option value={"dropdown"}>Dropdown</option>
-        <hr />
-        <option value={"fileupload"}>File upload</option>
-        <hr />
         <option value={"date"}>Date</option>
         <option value={"time"}>Time</option>
       </select>
       <div className="optren">
         {optype === "text" || optype === "textarea" ? (
-          <Text optype={optype}/>
+          <Text optype={optype} />
         ) : optype === "radio" ||
           optype === "checkbox" ||
           optype === "dropdown" ? (
@@ -81,7 +76,9 @@ function Question({
             setsaved={setsaved}
           />
         ) : (
-          ""
+          <DateTime
+            optype={optype}
+          />
         )}
       </div>
       <div className="quesopt">
@@ -90,11 +87,14 @@ function Question({
           <label className="switch">
             <input
               type="checkbox"
+              defaultChecked={forms[frmindex].questions[index].required}
               onChange={() => {
                 forms[frmindex].questions[index].required =
                   !forms[frmindex].questions[index].required;
+                setsaved(false);
               }}
             />
+
             <span className="slider round"></span>
           </label>
         </div>

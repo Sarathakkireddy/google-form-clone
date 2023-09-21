@@ -16,7 +16,8 @@ export function AccountProvider({ children }) {
         token,
         changeToken: (new_token) => {
           setToken(new_token);
-        },userID,
+        },
+        userID,
         changeUserId: (new_id) => {
           setUserId(new_id);
         },

@@ -42,8 +42,6 @@ function ViewForm() {
         for (let i = 0; i < options.length; i++) {
           if (options[i].checked) {
             responses[indx].answer=options[i].value;
-            console.log(options[i].value);
-            console.log(responses[indx]);
           }
         }
       }
@@ -52,23 +50,37 @@ function ViewForm() {
         for (let i = 0; i < options.length; i++) {
           if (options[i].checked) {
             responses[indx].answer.push(options[i].value);
-            console.log(options[i].value);
-            console.log(responses[indx]);
           }
         }
       }
       
     });
-    console.log(responses);
-    finshed=true;
+    
+  }
+  function validate(){
+    let len=form.questions.length;
+    let count=0;
+    form.questions.forEach((question, indx) => {
+      if(question.required){
+        if(responses[indx].answer===""){
+          alert(`Answer this question ${question.question}`);
+        }else{
+          count++;
+        }
+      }else{
+        count++;
+      }
+      if(len===count){
+        finshed=true;
+      }
+    })
   }
   async function postdata(){
-      const res = await axios({
+       await axios({
         method: "post",
         url: "http://localhost:4000/google-form/v1/resp/uploadresp",
         data: { userid:params.userid,formid:params.formid, responses:[...responses] },
       });
-      console.log(res);
   }
 
   return (
@@ -100,6 +112,7 @@ function ViewForm() {
               onClick={(e) => {
                 e.preventDefault();
                 updateresponses();
+                validate();
                 if(finshed){
                   postdata();
                   navigate("/finish" ,{new:true});

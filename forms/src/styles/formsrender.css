@@ -13,3 +13,12 @@
 .formdisp-desc{
     font-size: large;
 }
+.dets{
+    display: inline-block;
+    width: 80%;
+}
+.del{
+    float: right;
+    margin-right: 5%;
+    margin-top: 10px;
+}

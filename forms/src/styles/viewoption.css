@@ -5,3 +5,6 @@
 label{
     display: inline-block;
 }
+.time,.date{
+    width: 100px;
+}

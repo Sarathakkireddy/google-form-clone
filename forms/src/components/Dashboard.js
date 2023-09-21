@@ -3,13 +3,23 @@ import "../styles/dashboard.css";
 import axios from "axios";
 import { useAccountInfo } from "../contexts/accountContext";
 import Formsrender from "./Formsrender";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const context = useAccountInfo();
   const [id, setid] = useState();
-  const [forms,setforms]=useState([]);
+  const [forms, setforms] = useState([]);
+  const [modified, setmodified] = useState();
+  const navigate = useNavigate();
   useEffect(() => {
-    async function fetchdata() {
+    if (!localStorage.getItem("token")) {
+      navigate("/");
+    } else {
+      fetchdata();
+    }
+  }, [modified]);
+  async function fetchdata() {
+    try {
       const res = await axios({
         method: "get",
         url: "http://localhost:4000/google-form/v1/frm/formdets",
@@ -20,33 +30,33 @@ function Dashboard() {
       });
       setid(res.data.data[0]._id);
       setforms([...res.data.data[0].forms]);
+    } catch (e) {
+      alert("session expired please login again");
+      if (e.response.status === 401) {
+        localStorage.removeItem("token");
+        navigate("/");
+      }
     }
-    fetchdata();
-  }, []);
-  async function fetchdata() {
-    const res = await axios({
-      method: "get",
-      url: "http://localhost:4000/google-form/v1/frm/formdets",
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-      },
-      data: { id: context.userId },
-    });
-    console.log(res.data);
-    setid(res.data.data[0]._id);
-    setforms([...res.data.data[0].forms]);
   }
   async function addques() {
-    const res = await axios({
-      method: "patch",
-      url: "http://localhost:4000/google-form/v1/frm/form",
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-      },
-      data: { id: id,forms:forms },
-    });
-      
-  };
+    try {
+      const res = await axios({
+        method: "patch",
+        url: "http://localhost:4000/google-form/v1/frm/form",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+        },
+        data: { id: id, forms: forms },
+      });
+      setmodified(res);
+    } catch (e) {
+      alert("session expired please login again");
+      if (e.response.status === 401) {
+        localStorage.removeItem("token");
+        navigate("/");
+      }
+    }
+  }
   function addnewquestion() {
     forms.push({
       title: "Undefined title",
@@ -54,19 +64,37 @@ function Dashboard() {
       questions: [{ question: "question", type: "radio", options: ["option"] }],
     });
 
-    
     addques();
     fetchdata();
   }
 
   return (
     <div className="dashboard-container">
-      <div className="dashboard-header">DASHBOARD</div>
+      <div className="dashboard-header">
+        <div className="heading">DASHBOARD</div>
+        <button
+          className="logout"
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/");
+          }}
+        >
+          Logout
+        </button>
+      </div>
       <div className="dashboard-forms-list">
         {forms.map((form, frmindex) => {
-          return <Formsrender form={form} forms={forms} id={id} frmindex={frmindex} key={frmindex} />;
+          return (
+            <Formsrender
+              form={form}
+              forms={forms}
+              id={id}
+              frmindex={frmindex}
+              key={frmindex}
+              setmodified={setmodified}
+            />
+          );
         })}
-        {console.log(forms)}
       </div>
       <div
         className="add-new-form"

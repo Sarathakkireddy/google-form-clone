@@ -36,3 +36,15 @@
 #add-icn{
   color: #F3FDE8;
 }
+.heading{
+    display: inline-block;
+    /* margin-left: auto; */
+}
+.logout{
+    float:right;
+    margin-right: 10px;
+    color: white;
+    background-color: red;
+    padding: 5px;
+    font-size: large;
+}
