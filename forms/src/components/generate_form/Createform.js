@@ -65,7 +65,7 @@ function Createform() {
               <button
                 className="form-send"
                 onClick={() => {
-                  copy("https://google-form-clone-sar.netlify.app/view/"+id+"/"+form._id);
+                  copy("https://google-form-clone-seven.vercel.app/view/"+id+"/"+form._id);
                   alert("Link Copied to ClipBoard");
                 }}
               >
