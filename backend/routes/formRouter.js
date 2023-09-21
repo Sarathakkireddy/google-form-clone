@@ -10,6 +10,6 @@ const router = express.Router();
 
 router.get("/formdets", protect, getForms);
 router.patch("/form", protect, updateform);
-router.get("/viewform", viewform); 
+router.post("/viewform", viewform); 
 
 module.exports = router;
