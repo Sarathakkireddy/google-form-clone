@@ -16,7 +16,6 @@ const protect = async (req, res, next) => {
       res.status(401).json({
         message: e.message,
       });
-      throw new Error("Not authorized");
     }
   }
 
