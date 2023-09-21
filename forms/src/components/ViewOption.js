@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/viewoption.css"
+import "../styles/viewoption.css";
 
-function ViewOption({ ques, qindex, setresponses,responses}) {
+function ViewOption({ ques, qindex, setresponses, responses }) {
   return (
     <>
       {ques.type === "text" ? (
@@ -10,8 +10,8 @@ function ViewOption({ ques, qindex, setresponses,responses}) {
           required={ques.required}
           className="form-text-inp"
           onChange={(e) => {
-            let arr=[...responses];
-            arr[qindex].answer=e.currentTarget.value;
+            let arr = [...responses];
+            arr[qindex].answer = e.currentTarget.value;
             setresponses([...arr]);
           }}
         />
@@ -20,8 +20,8 @@ function ViewOption({ ques, qindex, setresponses,responses}) {
           required={ques.required}
           className="form-textarea-inp"
           onChange={(e) => {
-            let arr=[...responses];
-            arr[qindex].answer=e.currentTarget.value;
+            let arr = [...responses];
+            arr[qindex].answer = e.currentTarget.value;
             setresponses([...arr]);
           }}
         ></textarea>
@@ -37,7 +37,6 @@ function ViewOption({ ques, qindex, setresponses,responses}) {
                 value={opt}
                 id={opt}
                 required={ques.required}
-               
               />
               <label htmlFor={opt}>{opt}</label>
             </span>
@@ -55,7 +54,6 @@ function ViewOption({ ques, qindex, setresponses,responses}) {
                 value={opt}
                 required={ques.required}
                 id={opt}
-                
               />
               <label htmlFor={opt}>{opt}</label>
             </span>
@@ -67,16 +65,28 @@ function ViewOption({ ques, qindex, setresponses,responses}) {
           name={ques.question}
           defaultValue={ques.options[0]}
           className="inp-dropdown"
-          onChange={(e)=>{ let arr=[...responses];
-            arr[qindex].answer=e.currentTarget.value;
-            setresponses([...arr]);}}
+          onChange={(e) => {
+            let arr = [...responses];
+            arr[qindex].answer = e.currentTarget.value;
+            setresponses([...arr]);
+          }}
         >
           {ques.options.map((opt, oindex) => {
             return <option key={oindex}>{opt}</option>;
           })}
         </select>
+      ) : ques.type === "date" ? (
+        <input type="date" className="date"  onChange={(e) => {
+          let arr = [...responses];
+          arr[qindex].answer = e.currentTarget.value;
+          setresponses([...arr]);
+        }}/>
       ) : (
-        ""
+        <input type="time" className="time"  onChange={(e) => {
+          let arr = [...responses];
+          arr[qindex].answer = e.currentTarget.value;
+          setresponses([...arr]);
+        }}/>
       )}
     </>
   );

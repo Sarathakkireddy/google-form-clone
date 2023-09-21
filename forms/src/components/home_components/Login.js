@@ -30,7 +30,7 @@ function Login({setview}) {
     context.changeUserId(res.data.id);
     navigate("/dash");
   }catch(error){ 
-    console.log(error);
+    alert(error);
   }
   }
   return (
@@ -41,7 +41,6 @@ function Login({setview}) {
         <br/>
         <input type='password' placeholder='PASSWORD' ref={pwdref} className='pwd-login'/>
         <br/>
-        <span className='forget-pwd'>Forgot password</span><br/>
         <button className='login-btn' onClick={()=>{
           validEmail(emailref.current.value);
           logintoaccount();

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Formgen from "./Formgen";
 import Responses from "./Responses";
 import "../../styles/createform.css";
@@ -8,6 +8,7 @@ import copy from "copy-to-clipboard";
 
 
 function Createform() {
+  
   const location = useLocation();;
   const form = location.state.form;
   const forms = location.state.forms;
@@ -19,8 +20,14 @@ function Createform() {
   const [saved, setsaved] = useState(true);
   const navigate=useNavigate();
 
+  useEffect(()=>{
+    if(!localStorage.getItem("token")){
+      navigate("/");
+    }
+  },[]);
+
   async function addques() {
-    const res = await axios({
+    try{const res = await axios({
       method: "patch",
       url: "http://localhost:4000/google-form/v1/frm/form",
       headers: {
@@ -29,6 +36,14 @@ function Createform() {
       data: { id: id, forms: forms },
     });
     setsaved(true);
+  }catch(e){
+    alert("session expired please login again");
+    if(e.response.status===401){
+      localStorage.removeItem("token");
+      navigate("/");
+    }
+  }
+    
   }
 
   return (

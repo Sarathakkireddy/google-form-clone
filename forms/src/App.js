@@ -11,7 +11,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/*" element={<Home />} />
           <Route path="/dash" element={<Dashboard />} />
           <Route path="/cf" element={<Createform />} />
           <Route path="/view/:userid/:formid" element={ <ViewForm/>}/>

@@ -24,7 +24,7 @@ const register=async(req,res)=>{
             user:new_account._id,
             forms:[{title:"Undefiened title",description:"description",questions:[{question:"Question",type:"radio",required:false,options:["option"]}]}],
           });
-          res.status(201).json(new_account);
+          res.status(201).json(new_account); 
         }
     }
     catch(error){
