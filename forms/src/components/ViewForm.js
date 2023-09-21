@@ -13,12 +13,14 @@ function ViewForm() {
   useEffect(() => {
     async function fetchForm() {
       const res = await axios({
-        method: "get",
+        method: "post",
         url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/frm/viewform",
         data: { id: params.userid },
       });
-      let arr = [...res.data.data.forms];
-      arr = arr.filter(checkformid);
+      let arr = [...res.data.data];
+      arr=arr.filter(checkid);
+      arr=arr[0];
+      arr = arr.forms.filter(checkformid);
       let arr2 = [];
       arr[0].questions.forEach((ques, qindex) => {
         arr2.push({
@@ -28,6 +30,9 @@ function ViewForm() {
       });
       setresponses([...arr2]);
       setform(...arr);
+       function checkid(frm){
+        return frm._id===params.userid;
+      }
       function checkformid(frm) {
         return frm._id === params.formid;
       }
