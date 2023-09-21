@@ -12,12 +12,32 @@ function Dashboard() {
   const [modified, setmodified] = useState();
   const navigate = useNavigate();
   useEffect(() => {
+    async function fetchdata() {
+      try {
+        const res = await axios({
+          method: "get",
+          url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/frm/formdets",
+          headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+          },
+          data: { id: context.userId },
+        });
+        setid(res.data.data[0]._id);
+        setforms([...res.data.data[0].forms]);
+      } catch (e) {
+        alert("session expired please login again");
+        if (e.response.status === 401) {
+          localStorage.removeItem("token");
+          navigate("/");
+        }
+      }
+    }
     if (!localStorage.getItem("token")) {
       navigate("/");
     } else {
       fetchdata();
     }
-  }, [modified]);
+  }, [modified,navigate,context]);
   async function fetchdata() {
     try {
       const res = await axios({
