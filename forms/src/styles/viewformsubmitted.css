@@ -1,0 +1,13 @@
+.card{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: bisque;
+    height: 40vh;
+    padding: 20px;
+    margin-top: 10%;
+}
+.card-msg{
+    margin-top: 20%;
+    color: green;
+}
