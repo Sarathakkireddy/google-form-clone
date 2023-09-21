@@ -8,7 +8,7 @@ function Responses({ form }) {
     async function fetchrespdata() {
       const res = await axios({
         method: "get",
-        url: "http://localhost:4000/google-form/v1/resp/allrespon/" + form._id,
+        url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/resp/allrespon/" + form._id,
         headers: { Authorization: `Bearer ${localStorage.token}` },
       });
       setresp([...res.data.data]);

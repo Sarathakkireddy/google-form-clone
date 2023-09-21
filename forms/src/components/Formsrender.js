@@ -9,7 +9,7 @@ function Formsrender({ form, forms, id, frmindex, setmodified }) {
     try {
       const res = await axios({
         method: "patch",
-        url: "http://localhost:4000/google-form/v1/frm/form",
+        url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/frm/form",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },

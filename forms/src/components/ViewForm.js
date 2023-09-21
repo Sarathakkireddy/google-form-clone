@@ -14,7 +14,7 @@ function ViewForm() {
     async function fetchForm() {
       const res = await axios({
         method: "get",
-        url: "http://localhost:4000/google-form/v1/frm/viewform",
+        url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/frm/viewform",
         data: { id: params.userid },
       });
       let arr = [...res.data.data.forms];
@@ -78,7 +78,7 @@ function ViewForm() {
   async function postdata(){
        await axios({
         method: "post",
-        url: "http://localhost:4000/google-form/v1/resp/uploadresp",
+        url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/resp/uploadresp",
         data: { userid:params.userid,formid:params.formid, responses:[...responses] },
       });
   }

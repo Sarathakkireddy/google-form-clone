@@ -22,7 +22,7 @@ function Dashboard() {
     try {
       const res = await axios({
         method: "get",
-        url: "http://localhost:4000/google-form/v1/frm/formdets",
+        url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/frm/formdets",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },
@@ -42,7 +42,7 @@ function Dashboard() {
     try {
       const res = await axios({
         method: "patch",
-        url: "http://localhost:4000/google-form/v1/frm/form",
+        url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/frm/form",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
         },

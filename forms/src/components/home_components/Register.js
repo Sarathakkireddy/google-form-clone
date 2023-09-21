@@ -36,7 +36,7 @@ function Register({ setview }) {
   const registeraccount = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:4000/google-form/v1/account/register",
+        "https://google-form-clone-ouy7.onrender.com/google-form/v1/account/register",
         {
           name: rnameref.current.value,
           email: remailref.current.value,
