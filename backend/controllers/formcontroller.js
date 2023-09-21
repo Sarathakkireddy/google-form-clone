@@ -23,7 +23,7 @@ const updateform = async (req, res) => {
 
 const viewform=async (req,res)=>{
   try{
-    const data=await formModel.findOne(req.body.userid);
+    const data=await formModel.find(req.body.userid);
     res.status(200).json({data});
   }catch(e){
     res.status(400).json({message: e.message });
