@@ -1,10 +1,10 @@
 import React from 'react'
+import "../styles/viewformsubmitted.css"
 
 function ViewFormSubmitted() {
   return (
-    <div>
-        <p>Thank you! Your response has been recorded</p>
-        <span>click here to Submit another response</span>
+    <div className='card'>
+        <p className='card-msg'>Thank you! Your response has been recorded</p>
     </div>
   )
 }
