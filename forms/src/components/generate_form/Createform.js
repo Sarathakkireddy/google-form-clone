@@ -24,10 +24,10 @@ function Createform() {
     if(!localStorage.getItem("token")){
       navigate("/");
     }
-  },[]);
+  },[navigate]);
 
   async function addques() {
-    try{const res = await axios({
+    try{ await axios({
       method: "patch",
       url: "https://google-form-clone-ouy7.onrender.com/google-form/v1/frm/form",
       headers: {
